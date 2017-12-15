@@ -1,0 +1,13 @@
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+
+
+
+url = "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000910638&type=10&dateb=&owner=exclude&count=100"
+soup = BeautifulSoup(urlopen(url))
+files = soup.find_all(id = 'documentsbutton')
+
+for file in files:
+    url = "https://www.sec.gov" + file['href']
+    url = "https://www.sec.gov/Archives/edgar/data/910638/000091063817000016/0000910638-17-000016-index.htm"
+    soup = BeautifulSoup(urlopen(url))
